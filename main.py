@@ -27,9 +27,6 @@ if __name__ == '__main__':
     parser.add_argument('--seed', help='Generation seed', type=int, default=randint(0, 100000))
     parser.add_argument('--prompt_strength', help='Prompt strength', type=float, default=None)
 
-    # Dev parameters
-    parser.add_argument('--server_mode', help='Use debug or production mode', type=str, default='production')
-
     args = parser.parse_args()
 
     # be sure to export your email and psw as environmental variables
@@ -53,8 +50,6 @@ if __name__ == '__main__':
     REF_PATH = args.reference_path
     REF_URL = args.reference_url
 
-    # Server
-    SERVER_MODE = args.server_mode
 
     if INPUT_PATH is not None:
         if os.path.exists(INPUT_PATH):
@@ -84,7 +79,7 @@ if __name__ == '__main__':
             print('No reference images given, proceeding')
 
     # log in
-    TOKEN_DICTIONARY = start_call(EMAIL, PASSWORD, SERVER_MODE)
+    TOKEN_DICTIONARY = start_call(EMAIL, PASSWORD)
     print(TOKEN_DICTIONARY)
     
     PARAM_DICTIONARY = {
@@ -98,6 +93,9 @@ if __name__ == '__main__':
             'PROMPT': PROMPT,
             'SEED': SEED,
             'PROMPT_STRENGTH': PROMPT_STRENGTH,
+            'OPTIONS': {
+                        'flag_detection': False,  # avoid people detection
+                        },
         }
 
     # run different process based on batch variation or not

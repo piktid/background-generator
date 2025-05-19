@@ -81,10 +81,6 @@ def save_replaced_img(link, PARAM_DICTIONARY, TOKEN_DICTIONARY):
         ps = PARAM_DICTIONARY.get('PROMPT_STRENGTH')
         if ps is not None:
             options_str = options_str+'ps'+str(ps)+'_'
-
-        server_mode = TOKEN_DICTIONARY.get('server_mode')
-        if server_mode is not None:
-            options_str = options_str+server_mode
         
         path_output = PARAM_DICTIONARY.get('OUTPUT_PATH', None)
 

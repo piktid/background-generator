@@ -69,9 +69,6 @@ def start_call(email, password, server_mode='production'):
     # Get token
     if server_mode == 'production':
         URL_API = 'https://api.piktid.com/api'
-        #URL_API = 'https://idbackend.piktid.com/api'
-    elif server_mode == 'debug':
-        URL_API = 'http://localhost:5001/api'
     else:
         print('Error server mode, exiting..')
         return {}
@@ -82,7 +79,7 @@ def start_call(email, password, server_mode='production'):
     ACCESS_TOKEN = response_json['access_token']
     REFRESH_TOKEN = response_json['refresh_token']
 
-    return {'access_token': ACCESS_TOKEN, 'refresh_token': REFRESH_TOKEN, 'url_api': URL_API, 'server_mode': server_mode}
+    return {'access_token': ACCESS_TOKEN, 'refresh_token': REFRESH_TOKEN, 'url_api': URL_API}
 
 
 def refresh_call(TOKEN_DICTIONARY):
@@ -156,7 +153,7 @@ def upload_target_call(PARAM_DICTIONARY, TOKEN_DICTIONARY):
                                      )
 
     response_json = json.loads(response.text)
-    print(f"Upload successful. Response json: {response_json}")
+    print(f"Upload successful")
 
     return response_json
 
@@ -192,7 +189,7 @@ def upload_reference_call(PARAM_DICTIONARY, TOKEN_DICTIONARY):
                                  )
 
     response_json = json.loads(response.text)
-    print(f"Upload successful. Response json: {response_json}")
+    print(f"Upload reference successful")
 
     return response_json
 

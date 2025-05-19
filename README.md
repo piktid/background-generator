@@ -61,5 +61,34 @@ $ python3 main.py --input_filepath '/path/to/your/image.jpg' --seed 12345 --prom
 - **prompt_strength**: How much the background follows the prompt (default: 1)
 - **seed**: Random seed for reproducible results (default: random)
 
+## Using Reference Images
+
+You can also generate backgrounds based on reference images. There are two ways to provide a reference image:
+
+# Using a local reference image file:
+```bash
+$ python3 main.py --input_filepath '/path/to/your/image.jpg' --reference_path '/path/to/reference.jpg' --prompt 'a beer in ..' --seed 0 --prompt_strength 0.5
+```
+
+# Using a reference image URL:
+```bash
+$ python3 main.py --input_filepath '/path/to/your/image.jpg' --reference_url 'https://example.com/reference-image.jpg' --prompt 'background is ..' --seed 0 --prompt_strength 0.3
+```
+
+The reference image will be used as a style guide for generating the background while maintaining consistency with the provided prompt.
+
+## Resuming Operations
+
+After uploading images, you'll receive unique IDs for both the input and reference images. You can use these IDs to resume or create new variations without uploading the images again:
+
+```bash
+$ python3 main.py --id_image "22FXXXXXX" --reference_name "0OqUXXXXXX" --prompt "shoes on a white room" --seed 0
+```
+
+This is particularly useful when:
+- Working with the same images multiple times
+- Creating variations of previous generations
+- Saving bandwidth by avoiding re-uploads
+
 ## Contact
 office@piktid.com
