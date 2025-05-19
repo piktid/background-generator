@@ -65,13 +65,12 @@ $ python3 main.py --input_filepath '/path/to/your/image.jpg' --seed 12345 --prom
 
 You can also generate backgrounds based on reference images. There are two ways to provide a reference image:
 
-# Using a local reference image file:
 ```bash
-$ python3 main.py --input_filepath '/path/to/your/image.jpg' --reference_path '/path/to/reference.jpg' --prompt 'a beer in ..' --seed 0 --prompt_strength 0.5
-```
 
-# Using a reference image URL:
-```bash
+# Using a local reference image file
+$ python3 main.py --input_filepath '/path/to/your/image.jpg' --reference_path '/path/to/reference.jpg' --prompt 'a beer in ..' --seed 0 --prompt_strength 0.5
+
+# Using a reference image URL
 $ python3 main.py --input_filepath '/path/to/your/image.jpg' --reference_url 'https://example.com/reference-image.jpg' --prompt 'background is ..' --seed 0 --prompt_strength 0.3
 ```
 
