@@ -47,20 +47,20 @@ $ python3 main.py --input_filepath '/path/to/your/image.jpg' --keyword 'Wedding'
 
 Available keywords are organized by categories:
 
-**Materials & Textures**: Silk, Wood, Marble, Stone, Metal, Leather, Paper, Gold
-**Nature & Landscapes**: Beach, Forest, Mountains, Desert, Lake, Garden, Tropical, Sky  
-**Florals**: Roses, Lavender, Flowers, Leaves
-**Indoor Spaces**: Studio, Living Room, Kitchen, Bathroom, Bedroom, Office, Cafe, Gym, Library
-**Outdoor Spaces**: Street, Rooftop, Pool, Courtyard, Balcony, Skyscraper
-**Special Occasions**: Christmas, Halloween, Easter, Wedding, Birthday
-**Artistic & Stylized**: Paint, Graffiti, Abstract, Vintage, Minimalist
-**Architectural**: Modern, Industrial, Classic, Futuristic
-**Colors & Gradients**: Solid, Gradients, Ombre
-**Seasonal**: Spring, Summer, Autumn, Winter
-**Professional & Business**: Corporate, Medical, Conference
-**Entertainment**: Cinema, Concert, Night
-**Transportation**: Car, Airplane, Train
-**Weather & Effects**: Rain, Fog, Sunset, Sunrise, Fire, Water, Snow
+- **Materials & Textures**: Silk, Wood, Marble, Stone, Metal, Leather, Paper, Gold
+- **Nature & Landscapes**: Beach, Forest, Mountains, Desert, Lake, Garden, Tropical, Sky  
+- **Florals**: Roses, Lavender, Flowers, Leaves
+- **Indoor Spaces**: Studio, Living Room, Kitchen, Bathroom, Bedroom, Office, Cafe, Gym, Library
+- **Outdoor Spaces**: Street, Rooftop, Pool, Courtyard, Balcony, Skyscraper
+- **Special Occasions**: Christmas, Halloween, Easter, Wedding, Birthday
+- **Artistic & Stylized**: Paint, Graffiti, Abstract, Vintage, Minimalist
+- **Architectural**: Modern, Industrial, Classic, Futuristic
+- **Colors & Gradients**: Solid, Gradients, Ombre
+- **Seasonal**: Spring, Summer, Autumn, Winter
+- **Professional & Business**: Corporate, Medical, Conference
+- **Entertainment**: Cinema, Concert, Night
+- **Transportation**: Car, Airplane, Train
+- **Weather & Effects**: Rain, Fog, Sunset, Sunrise, Fire, Water, Snow
 
 > **Step 3b** - Run the main function with a URL or local file path of the image and specify a text
 ```bash
