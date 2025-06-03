@@ -95,8 +95,7 @@ def refresh_call(TOKEN_DICTIONARY):
 
 def resume_call(ACCESS_TOKEN, REFRESH_TOKEN):
 
-    URL_API = 'https://idbackend.piktid.com/api'
-    # URL_API='http://localhost:5001/api'
+    URL_API = 'https://api.piktid.com/api'
 
     return {'access_token': ACCESS_TOKEN, 'refresh_token': REFRESH_TOKEN, 'url_api': URL_API}
 
@@ -198,10 +197,18 @@ def generate_background_call(PARAM_DICTIONARY, TOKEN_DICTIONARY):
 
     ID_IMAGE = PARAM_DICTIONARY.get('ID_IMAGE')
     PROMPT = PARAM_DICTIONARY.get('PROMPT')
+    CATEGORY = PARAM_DICTIONARY.get('CATEGORY')
+    KEYWORD = PARAM_DICTIONARY.get('KEYWORD')
+
     data = {
-            'id_image': ID_IMAGE,
-            'prompt': PROMPT
+            'id_image': ID_IMAGE
         }
+    
+    if CATEGORY is not None:
+        data = {**data, 'keyword': json.dumps({CATEGORY: KEYWORD})}
+
+    if PROMPT is not None:
+        data = {**data, 'prompt': PROMPT}
 
     OPTIONS_DICT = {'eraseid_gpu': True} # TODO: add other options
 
@@ -228,7 +235,7 @@ def generate_background_call(PARAM_DICTIONARY, TOKEN_DICTIONARY):
 
     response = requests.post(URL_API+'/edit/background',
                              headers={'Authorization': 'Bearer '+TOKEN},
-                             data=data
+                             json=data
                              )
     # if the access token is expired
     if response.status_code == 401:
@@ -237,7 +244,7 @@ def generate_background_call(PARAM_DICTIONARY, TOKEN_DICTIONARY):
         # try with new TOKEN
         response = requests.post(URL_API+'/edit/background',
                                  headers={'Authorization': 'Bearer '+TOKEN},
-                                 data=data
+                                 json=data
                                  )
 
     # print(response.text)

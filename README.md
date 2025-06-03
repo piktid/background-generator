@@ -36,7 +36,33 @@ $ export EDDIE_EMAIL={Your email here}
 $ export EDDIE_PASSWORD={Your password here}
 ```
 
-> **Step 3** - Run the main function with a URL or local file path of the image and specify a text
+> **Step 3a** - Run the main function with a URL or local file path of the image and a keyword
+```bash
+# Using a URL with a text
+$ python3 main.py --input_url 'your-url' --keyword 'Forest'
+
+# Using a local file path with a keyword
+$ python3 main.py --input_filepath '/path/to/your/image.jpg' --keyword 'Wedding'
+```
+
+Available keywords are organized by categories:
+
+**Materials & Textures**: Silk, Wood, Marble, Stone, Metal, Leather, Paper, Gold
+**Nature & Landscapes**: Beach, Forest, Mountains, Desert, Lake, Garden, Tropical, Sky  
+**Florals**: Roses, Lavender, Flowers, Leaves
+**Indoor Spaces**: Studio, Living Room, Kitchen, Bathroom, Bedroom, Office, Cafe, Gym, Library
+**Outdoor Spaces**: Street, Rooftop, Pool, Courtyard, Balcony, Skyscraper
+**Special Occasions**: Christmas, Halloween, Easter, Wedding, Birthday
+**Artistic & Stylized**: Paint, Graffiti, Abstract, Vintage, Minimalist
+**Architectural**: Modern, Industrial, Classic, Futuristic
+**Colors & Gradients**: Solid, Gradients, Ombre
+**Seasonal**: Spring, Summer, Autumn, Winter
+**Professional & Business**: Corporate, Medical, Conference
+**Entertainment**: Cinema, Concert, Night
+**Transportation**: Car, Airplane, Train
+**Weather & Effects**: Rain, Fog, Sunset, Sunrise, Fire, Water, Snow
+
+> **Step 3b** - Run the main function with a URL or local file path of the image and specify a text
 ```bash
 # Using a URL with a text
 $ python3 main.py --input_url 'your-url' --prompt ' .. commercial photo, red and white room lighting, depth of field，high level feeling，perfect lighting'
@@ -57,7 +83,8 @@ $ python3 main.py --input_filepath '/path/to/your/image.jpg' --seed 12345 --prom
 - **input_url**: URL of the image to process
 - **input_filepath**: Local path to the image file
 - **output_filepath**: Where to save the generated image
-- **prompt**: Textual description of the background (REQUIRED)
+- **keyword**: Predefined keyword for background generation (alternative to prompt)
+- **prompt**: Textual description of the background (REQUIRED if keyword not used)
 - **prompt_strength**: How much the background follows the prompt (default: 1)
 - **seed**: Random seed for reproducible results (default: random)
 

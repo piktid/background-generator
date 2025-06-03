@@ -7,6 +7,14 @@ from PIL import Image, ImageFile, ImageFilter
 from random import randint
 
 from editBackground_api import upload_target_call, upload_reference_call, generate_background_call, open_image_from_url, handle_notifications
+from editBackground_dict import valid_keywords as bg_dict
+
+
+def find_key_by_value(target_value):
+    for key, values in bg_dict.items():
+        if target_value in values:
+            return key
+    return None
 
 
 def generate_background(PARAM_DICTIONARY, TOKEN_DICTIONARY):
@@ -31,7 +39,6 @@ def generate_background(PARAM_DICTIONARY, TOKEN_DICTIONARY):
     else:
         print(f'Reference is already available with code:{REF_NAME}, proceeding..')
 
-
     if ID_IMAGE is None:
         print('Uploading the target image')
         response_json = upload_target_call(PARAM_DICTIONARY=PARAM_DICTIONARY, TOKEN_DICTIONARY=TOKEN_DICTIONARY)
@@ -40,13 +47,21 @@ def generate_background(PARAM_DICTIONARY, TOKEN_DICTIONARY):
     else:
         print(f'Input image is already available with code: {ID_IMAGE}, proceeding..')
 
-    PROMPT = PARAM_DICTIONARY.get('PROMPT')
-    if PROMPT is not None:
-
-        print(f'Generating a new person using {ID_IMAGE} for prompt: {PROMPT}')
+    KEYWORD = PARAM_DICTIONARY.get('KEYWORD')
+    if KEYWORD is not None:
+        category = find_key_by_value(KEYWORD)
+        if category is None:
+            print(f'Error: keyword {KEYWORD} is not valid, please check the file editBackground_dict.py')
+            return False
+        print(f'Generating a new background using the category: {category} and keyword: {KEYWORD}')
+        PARAM_DICTIONARY['CATEGORY'] = category
     else:
-        print('Error: prompt is not provided')
-        return False
+        PROMPT = PARAM_DICTIONARY.get('PROMPT')
+        if PROMPT is not None:
+            print(f'Generating a new background using the prompt: {PROMPT}')
+        else:
+            print('Error: prompt is not provided')
+            return False
 
     response_json = generate_background_call(PARAM_DICTIONARY=PARAM_DICTIONARY, TOKEN_DICTIONARY=TOKEN_DICTIONARY)
     print(response_json)
@@ -78,6 +93,10 @@ def save_replaced_img(link, PARAM_DICTIONARY, TOKEN_DICTIONARY):
         if prompt is not None:
             options_str = options_str+prompt+'_'
 
+        keyword = PARAM_DICTIONARY.get('KEYWORD', None)
+        if keyword is not None:
+            options_str = options_str+keyword+'_'
+            
         ps = PARAM_DICTIONARY.get('PROMPT_STRENGTH')
         if ps is not None:
             options_str = options_str+'ps'+str(ps)+'_'

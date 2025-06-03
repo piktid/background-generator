@@ -23,6 +23,7 @@ if __name__ == '__main__':
     parser.add_argument('--reference_name', help='Reference code name, it overwrites the reference path', type=str, default=None)
 
     # Random generation parameters
+    parser.add_argument('--keyword', help='Generation keyword', type=str, default=None)
     parser.add_argument('--prompt', help='Generation prompt', type=str, default=None)
     parser.add_argument('--seed', help='Generation seed', type=int, default=randint(0, 100000))
     parser.add_argument('--prompt_strength', help='Prompt strength', type=float, default=None)
@@ -38,6 +39,7 @@ if __name__ == '__main__':
     REF_NAME = args.reference_name  # Default is None, otherwise a string of a stored name
 
     # Generation parameters
+    KEYWORD = args.keyword
     PROMPT = args.prompt
     SEED = args.seed
     PROMPT_STRENGTH = args.prompt_strength
@@ -90,11 +92,14 @@ if __name__ == '__main__':
             'REF_PATH': REF_PATH,
             'REF_URL': REF_URL,
             'REF_NAME': REF_NAME,
+            'KEYWORD': KEYWORD,
             'PROMPT': PROMPT,
             'SEED': SEED,
             'PROMPT_STRENGTH': PROMPT_STRENGTH,
             'OPTIONS': {
                         'flag_detection': False,  # avoid people detection
+                        'flag_background_removal': True, # remove background from the image
+                        'flag_caption_extraction': True, # extract caption from the image
                         },
         }
 
