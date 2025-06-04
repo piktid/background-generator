@@ -97,9 +97,7 @@ if __name__ == '__main__':
             'SEED': SEED,
             'PROMPT_STRENGTH': PROMPT_STRENGTH,
             'OPTIONS': {
-                        'flag_detection': False,  # avoid people detection
-                        'flag_background_removal': True, # remove background from the image
-                        'flag_caption_extraction': True, # extract caption from the image
+                        'app': 'edit_background',
                         },
         }
 
