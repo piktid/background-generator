@@ -10,7 +10,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--input_url', help='Image file url', type=str, default='https://images.piktid.com/frontend/studio/superid/upscaler_sample/21z.png')
+    parser.add_argument('--input_url', help='Image file url', type=str, default='https://images.piktid.com/frontend/edit-background/demo_edit-background_4.webp')
     parser.add_argument('--input_filepath', help='Input image file absolute path', type=str, default=None)
     parser.add_argument('--output_filepath', help='Output image file absolute path', type=str, default=None)
 

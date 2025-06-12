@@ -34,7 +34,7 @@ def generate_background(PARAM_DICTIONARY, TOKEN_DICTIONARY):
             # server errors
             print('Server error, try again later')
             return False, ''
-        PARAM_DICTIONARY['REF_NAME'] = REF_NAME
+        PARAM_DICTIONARY['OPTIONS']['reference_name'] = REF_NAME
 
     else:
         print(f'Reference is already available with code:{REF_NAME}, proceeding..')

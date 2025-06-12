@@ -210,11 +210,14 @@ def generate_background_call(PARAM_DICTIONARY, TOKEN_DICTIONARY):
     if PROMPT is not None:
         data = {**data, 'prompt': PROMPT}
 
-    OPTIONS_DICT = {'eraseid_gpu': True} # TODO: add other options
 
     SEED = PARAM_DICTIONARY.get('SEED')
     PROMPT_STRENGTH = PARAM_DICTIONARY.get('PROMPT_STRENGTH')
-    REF_NAME = PARAM_DICTIONARY.get('REF_NAME')
+
+    OPTIONS_DICT = PARAM_DICTIONARY.get('OPTIONS', {})
+    OPTIONS_DICT = {**OPTIONS_DICT, 'eraseid_gpu': True}
+
+    REF_NAME = OPTIONS_DICT.get('reference_name')
 
     if PROMPT_STRENGTH is not None:
         OPTIONS_DICT = {**OPTIONS_DICT, 'strength': PROMPT_STRENGTH}
