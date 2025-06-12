@@ -12,6 +12,10 @@
 Background Generator is a GenAI tool designed to generate coherent backgrounds in images.
 It allows you to upload a photo with a subject (object, product or a person) and generate a consistent background. The subject's illumination is also adjusted.
 
+<p align="center">
+  <img src="showcase.png" alt="Background Generator Showcase - Before and After Results" width="100%">
+</p>
+
 ## About
 Background generator utilizes generative AI to create authentic-looking backgrounds in photos. It's particularly useful for:
 

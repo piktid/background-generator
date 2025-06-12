@@ -1,6 +1,8 @@
 .DS_Store
 __pycache__
 __pycache__/
+.venv/
+.env
 
 # Image and media files
 *.png
@@ -15,3 +17,14 @@ __pycache__/
 *.WEBP
 *.GIF
 *.MP4
+
+# Ignore showcase
+!showcase.png
+
+# Image folders
+examples/
+
+# Python scripts
+create_showcase.py
+
+
