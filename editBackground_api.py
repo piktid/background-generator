@@ -215,7 +215,6 @@ def generate_background_call(PARAM_DICTIONARY, TOKEN_DICTIONARY):
     PROMPT_STRENGTH = PARAM_DICTIONARY.get('PROMPT_STRENGTH')
 
     OPTIONS_DICT = PARAM_DICTIONARY.get('OPTIONS', {})
-    OPTIONS_DICT = {**OPTIONS_DICT, 'eraseid_gpu': True}
 
     REF_NAME = OPTIONS_DICT.get('reference_name')
 
