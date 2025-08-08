@@ -27,6 +27,7 @@ if __name__ == '__main__':
     parser.add_argument('--prompt', help='Generation prompt', type=str, default=None)
     parser.add_argument('--seed', help='Generation seed', type=int, default=randint(0, 100000))
     parser.add_argument('--prompt_strength', help='Prompt strength', type=float, default=None)
+    parser.add_argument('--relight_strength', help='Relight strength', type=float, default=None)
 
     args = parser.parse_args()
 
@@ -43,7 +44,7 @@ if __name__ == '__main__':
     PROMPT = args.prompt
     SEED = args.seed
     PROMPT_STRENGTH = args.prompt_strength
-
+    RELIGHT_STRENGTH = args.relight_strength
     # Image parameters
     INPUT_URL = args.input_url 
     INPUT_PATH = args.input_filepath
@@ -96,6 +97,7 @@ if __name__ == '__main__':
             'PROMPT': PROMPT,
             'SEED': SEED,
             'PROMPT_STRENGTH': PROMPT_STRENGTH,
+            'RELIGHT_STRENGTH': RELIGHT_STRENGTH,
             'OPTIONS': {
                         'app': 'edit_background',
                         },

@@ -213,13 +213,16 @@ def generate_background_call(PARAM_DICTIONARY, TOKEN_DICTIONARY):
 
     SEED = PARAM_DICTIONARY.get('SEED')
     PROMPT_STRENGTH = PARAM_DICTIONARY.get('PROMPT_STRENGTH')
-
+    RELIGHT_STRENGTH = PARAM_DICTIONARY.get('RELIGHT_STRENGTH')
     OPTIONS_DICT = PARAM_DICTIONARY.get('OPTIONS', {})
 
     REF_NAME = OPTIONS_DICT.get('reference_name')
 
     if PROMPT_STRENGTH is not None:
         OPTIONS_DICT = {**OPTIONS_DICT, 'strength': PROMPT_STRENGTH}
+
+    if RELIGHT_STRENGTH is not None:
+        OPTIONS_DICT = {**OPTIONS_DICT, 'relight_strength': RELIGHT_STRENGTH}
 
     if SEED is not None:
         OPTIONS_DICT = {**OPTIONS_DICT, 'seed': SEED}
