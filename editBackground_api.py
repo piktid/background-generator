@@ -214,6 +214,8 @@ def generate_background_call(PARAM_DICTIONARY, TOKEN_DICTIONARY):
     SEED = PARAM_DICTIONARY.get('SEED')
     PROMPT_STRENGTH = PARAM_DICTIONARY.get('PROMPT_STRENGTH')
     RELIGHT_STRENGTH = PARAM_DICTIONARY.get('RELIGHT_STRENGTH')
+    USE_REFINER = PARAM_DICTIONARY.get('USE_REFINER', False)
+
     OPTIONS_DICT = PARAM_DICTIONARY.get('OPTIONS', {})
 
     REF_NAME = OPTIONS_DICT.get('reference_name')
@@ -229,6 +231,9 @@ def generate_background_call(PARAM_DICTIONARY, TOKEN_DICTIONARY):
 
     if REF_NAME is not None:
         OPTIONS_DICT = {**OPTIONS_DICT, 'reference_name': REF_NAME}
+
+    if USE_REFINER:
+        OPTIONS_DICT = {**OPTIONS_DICT, 'use_refiner': True}
 
     data = {**data, 'options': json.dumps(OPTIONS_DICT)}
 

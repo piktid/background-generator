@@ -92,6 +92,7 @@ $ python3 main.py --input_filepath '/path/to/your/image.jpg' --seed 12345 --prom
 - **prompt_strength**: How much the background follows the prompt (default: 1)
 - **relight_strength**: How much the output light should change wrt to the original (default: 1)
 - **seed**: Random seed for reproducible results (default: random)
+- **refine**: Refine the generation output (default: False)
 
 ## Using Reference Images
 
