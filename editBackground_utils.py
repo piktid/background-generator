@@ -101,6 +101,9 @@ def save_replaced_img(link, PARAM_DICTIONARY, TOKEN_DICTIONARY):
         if ps is not None:
             options_str = options_str+'ps'+str(ps)+'_'
         
+        if PARAM_DICTIONARY.get('USE_REFINER', False):
+            options_str = options_str+'refined_'
+        
         path_output = PARAM_DICTIONARY.get('OUTPUT_PATH', None)
 
         if PARAM_DICTIONARY.get('INPUT_PATH', None) is not None:
