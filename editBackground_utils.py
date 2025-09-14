@@ -1,10 +1,4 @@
 import os
-import sys
-import json
-import requests
-from io import BytesIO
-from PIL import Image, ImageFile, ImageFilter
-from random import randint
 
 from editBackground_api import upload_target_call, upload_reference_call, generate_background_call, open_image_from_url, handle_notifications
 from editBackground_dict import valid_keywords as bg_dict
@@ -17,7 +11,7 @@ def find_key_by_value(target_value):
     return None
 
 
-def generate_background(PARAM_DICTIONARY, TOKEN_DICTIONARY):
+def generate_background(PARAM_DICTIONARY):
 
     ID_IMAGE = PARAM_DICTIONARY.get('ID_IMAGE')
 
@@ -27,7 +21,7 @@ def generate_background(PARAM_DICTIONARY, TOKEN_DICTIONARY):
     
     if REF_NAME is None and (REF_PATH is not None or REF_URL is not None):
         print('Uploading the reference image')
-        response_json = upload_reference_call(PARAM_DICTIONARY=PARAM_DICTIONARY, TOKEN_DICTIONARY=TOKEN_DICTIONARY)
+        response_json = upload_reference_call(PARAM_DICTIONARY=PARAM_DICTIONARY)
         REF_NAME = response_json.get('reference_name')
         print(f'ref_name: {REF_NAME}')
         if REF_NAME is None:
@@ -41,7 +35,7 @@ def generate_background(PARAM_DICTIONARY, TOKEN_DICTIONARY):
 
     if ID_IMAGE is None:
         print('Uploading the target image')
-        response_json = upload_target_call(PARAM_DICTIONARY=PARAM_DICTIONARY, TOKEN_DICTIONARY=TOKEN_DICTIONARY)
+        response_json = upload_target_call(PARAM_DICTIONARY=PARAM_DICTIONARY)
         ID_IMAGE = response_json.get('id_image')
         PARAM_DICTIONARY['ID_IMAGE'] = ID_IMAGE
     else:
@@ -63,10 +57,10 @@ def generate_background(PARAM_DICTIONARY, TOKEN_DICTIONARY):
             print('Error: prompt is not provided')
             return False
 
-    response_json = generate_background_call(PARAM_DICTIONARY=PARAM_DICTIONARY, TOKEN_DICTIONARY=TOKEN_DICTIONARY)
+    response_json = generate_background_call(PARAM_DICTIONARY=PARAM_DICTIONARY)
     print(response_json)
 
-    flag_response, response_notifications = handle_notifications(PARAM_DICTIONARY, TOKEN_DICTIONARY)
+    flag_response, response_notifications = handle_notifications(PARAM_DICTIONARY)
     if flag_response is False:
         # Error
         print('Error retrieving the generated images. No images found after 120 attempts')
@@ -76,7 +70,7 @@ def generate_background(PARAM_DICTIONARY, TOKEN_DICTIONARY):
     download_link = ((response_notifications.get("links"))[0]).get("l") 
     print('new image ready for download:', download_link)
 
-    flag_save, final_path = save_replaced_img(download_link, PARAM_DICTIONARY, TOKEN_DICTIONARY)
+    flag_save, final_path = save_replaced_img(download_link, PARAM_DICTIONARY)
     if flag_save is False:
         print('Error: failed to save the generated image')
         return False, None, ID_IMAGE
@@ -84,7 +78,7 @@ def generate_background(PARAM_DICTIONARY, TOKEN_DICTIONARY):
     return flag_save, final_path, ID_IMAGE
 
 
-def save_replaced_img(link, PARAM_DICTIONARY, TOKEN_DICTIONARY):
+def save_replaced_img(link, PARAM_DICTIONARY):
     print('Saving the generated image')
     try:
         options_str = ''

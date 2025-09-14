@@ -34,10 +34,16 @@ $ git clone https://github.com/piktid/background-generator.git
 $ cd background-generator
 ```
 
-> **Step 2** - Export your email and password as environmental variables
+> **Step 2** - Export the email and password as environmental variables
 ```bash
-$ export EDDIE_EMAIL={Your email here}
-$ export EDDIE_PASSWORD={Your password here}
+$ export PIKTID_EMAIL={Your email here}
+$ export PIKTID_PASSWORD={Your password here}
+```
+
+or the authenticaton tokens - get them in https://studio.piktid.com/profile -> Tokens & Sessions
+```bash
+$ export ACCESS_TOKEN={Your access token}
+$ export REFRESH_TOKEN={Your refresh token}
 ```
 
 > **Step 3a** - Run the main function with a URL or local file path of the image and a keyword
