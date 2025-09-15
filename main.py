@@ -4,7 +4,8 @@ import argparse
 from random import randint
 
 from editBackground_utils import generate_background
-from editBackground_api import start_call
+
+from auth import piktid_auth
 
 if __name__ == '__main__':
 
@@ -32,10 +33,6 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    # be sure to export your email and psw as environmental variables
-    EMAIL = os.getenv("EDDIE_EMAIL")
-    PASSWORD = os.getenv("EDDIE_PASSWORD")
-
     # Parameters
     ID_IMAGE = args.id_image  # Default is None, otherwise a string of a stored name
     REF_NAME = args.reference_name  # Default is None, otherwise a string of a stored name
@@ -54,7 +51,6 @@ if __name__ == '__main__':
 
     REF_PATH = args.reference_path
     REF_URL = args.reference_url
-
 
     if INPUT_PATH is not None:
         if os.path.exists(INPUT_PATH):
@@ -83,9 +79,6 @@ if __name__ == '__main__':
         else:
             print('No reference images given, proceeding')
 
-    # log in
-    TOKEN_DICTIONARY = start_call(EMAIL, PASSWORD)
-    print(TOKEN_DICTIONARY)
     
     PARAM_DICTIONARY = {
             'INPUT_PATH': INPUT_PATH,
@@ -106,8 +99,14 @@ if __name__ == '__main__':
                         },
         }
 
+    # Authenticate and get the access token
+    if not piktid_auth():
+        print('Authentication failed, please check your credentials')
+        sys.exit()
+    
+    
     # run different process based on batch variation or not
 
-    response, final_path, ID_IMAGE = generate_background(PARAM_DICTIONARY, TOKEN_DICTIONARY) 
+    response, final_path, ID_IMAGE = generate_background(PARAM_DICTIONARY) 
     
     print(f'Response: {response}, final_path: {final_path}, ID_IMAGE: {ID_IMAGE}')  
